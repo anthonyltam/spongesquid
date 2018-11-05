@@ -1,0 +1,80 @@
+body {
+  background-color: grey;
+}
+
+#myCanvas {
+  background-image: url('../assets/Bikini-Bottom.jpg');
+  background-size: cover;
+  background-repeat: none;
+  /* display: block; */
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  /* color: black;
+  font-family: sans-serif; */
+  font-size: 50px;
+  color: orange;
+  text-shadow: 0 0 3px #4aff00, 0 0 5px #ff1700;
+  font-family: sans-serif;
+}
+
+
+.canvas-container{
+  justify-content: space-around;
+  display: flex;
+  align-items: flex-start;
+  display: flex;
+  width: 100%;
+  margin: 2%;
+  margin-left: 0px;
+}
+
+.dir-container{
+  display: flex;
+  min-height: 200px;
+  margin-left: 10px;
+}
+
+.directions{
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  background: rgb(150, 155, 161);
+  width: 195px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: orange;
+  text-shadow: 0 0 3px #4aff00, 0 0 5px #ff1700;
+  font-family: sans-serif;
+  margin-left: -10px;
+}
+
+.score {
+  margin-left: -10px;
+}
+
+.arrow-pic{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.button-container {  
+  display: flex;
+  justify-content: space-around;
+}
+
+.start {
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: sans-serif;
+  background: rgb(150, 155, 161);
+  height: 40px;
+  width: 15%;
+  border: transparent;
+  line-height: 2;
+  font-size: 18px;
+}
