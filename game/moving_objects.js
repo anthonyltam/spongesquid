@@ -1,5 +1,3 @@
-// import Util from './util';
-
 class MovingObject {
   constructor(options) {
     this.pos = options.pos;

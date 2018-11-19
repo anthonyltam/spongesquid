@@ -135,13 +135,8 @@ __webpack_require__.r(__webpack_exports__);
 class Game {
   constructor() {
     this.squidwards = [];
-    this.user = []; // this.addPlayer();
-
-    this.addsquidwards();
-  }
-
-  over() {
-    console.log("GAME OVER!");
+    this.user = [];
+    this.lost = false;
   }
 
   addPlayer() {
@@ -174,7 +169,6 @@ class Game {
   }
 
   isOutOfBounds(pos, rad = 0) {
-    // rad = 0;
     if (rad === 10) rad = 0;
     return pos[0] < rad || pos[1] < rad || pos[0] + rad > Game.DIM_X || pos[1] + rad > Game.DIM_Y;
   }
@@ -197,16 +191,15 @@ class Game {
   }
 
   draw(ctx) {
-    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y); // ctx.fillStyle = Game.BG_COLOR;
-    // ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
-
+    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     this.allObjects().forEach(object => {
       object.draw(ctx);
-    });
+    }); // setInterval(() => {
+    //   this.addsquidwards();
+    // }, 1000);
   }
 
   moveObjects(delta) {
-    // this.user[0].move();
     this.allObjects().forEach(obj => obj.move(delta));
   }
 
@@ -220,7 +213,6 @@ class Game {
   }
 
   step(delta) {
-    // this.movesquidwards(delta);
     this.moveObjects(delta);
     this.checkCollisions();
   }
@@ -235,7 +227,11 @@ class Game {
 
         if (obj1.isCollidedWith(obj2)) {
           const collision = obj1.collideWith(obj2);
-          if (collision) return;
+
+          if (collision) {
+            this.lost = true;
+            return;
+          }
         }
       }
     }
@@ -278,6 +274,7 @@ class GameView {
   }
 
   start() {
+    console.log(this.game.lost);
     this.bindKeyHandlers();
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
@@ -315,7 +312,6 @@ GameView.MOVES = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// import Util from './util';
 class MovingObject {
   constructor(options) {
     this.pos = options.pos;

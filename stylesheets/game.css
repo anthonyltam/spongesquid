@@ -78,3 +78,14 @@ body {
   line-height: 2;
   font-size: 18px;
 }
+
+.start-button {
+  cursor: pointer;
+  background: rgb(150, 155, 161);
+  border-radius: 12px;
+  color: orange;
+  height: 50px;
+  width: 15%;
+  font-size: 20px;
+  border: transparent;
+}
