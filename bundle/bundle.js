@@ -192,6 +192,7 @@ class Game {
   }
 
   playerPosition() {
+    // places player in middle
     return [Game.DIM_X / 2, Game.DIM_Y / 2];
   }
 
@@ -314,9 +315,7 @@ GameView.MOVES = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./game/util.js");
- // import Game from './game';
-
+// import Util from './util';
 class MovingObject {
   constructor(options) {
     this.pos = options.pos;
@@ -328,14 +327,6 @@ class MovingObject {
     this.game = options.game;
     this.wrappable = true;
     this.draw = this.draw.bind(this);
-  }
-
-  draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.pos[0], this.pos[1], this.rad, 0, Math.PI * 2, false);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    ctx.closePath();
   }
 
   move(timeDelta) {
@@ -350,24 +341,22 @@ class MovingObject {
         let [x, y] = pos;
         this.pos = [x + this.rad, y + this.rad];
       } else {
-        // console.log('NEED TO REMOVE');
-        // console.log(this)
         this.remove();
       }
     }
   }
 
   remove() {
-    // console.log('in remove!')
     this.game.remove(this);
   }
 
   isCollidedWith(otherObject) {
-    const centerDist = _util__WEBPACK_IMPORTED_MODULE_0__["default"].dist(this.pos, otherObject.pos);
-    return centerDist < this.rad + otherObject.rad;
+    if (this.pos[0] < otherObject.pos[0] + otherObject.width - 50 && this.pos[0] + this.width - 50 > otherObject.pos[0] && this.pos[1] < otherObject.pos[1] + otherObject.height - 10 && this.height - 10 + this.pos[1] > otherObject.pos[1]) {
+      return true;
+    } else {
+      return false;
+    }
   }
-
-  collideWith() {}
 
 }
 
@@ -386,7 +375,7 @@ const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _moving_objects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_objects */ "./game/moving_objects.js");
- // import Squidward from './squidwards';
+
 
 class Player extends _moving_objects__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(options = {}) {
@@ -405,20 +394,6 @@ class Player extends _moving_objects__WEBPACK_IMPORTED_MODULE_0__["default"] {
   }
 
   draw(ctx) {
-    // ctx.beginPath();
-    // ctx.rect(this.pos[0], this.pos[1], this.height, this.width);
-    // ctx.fillStyle = this.color;
-    // console.log(this.rect)
-    // ctx.fill();
-    // console.log(ctx);
-    // ctx.closePath()
-    // ctx.beginPath();
-    // ctx.arc(this.pos[0], this.pos[1], this.rad, 0, Math.PI * 2, false);
-    // ctx.fillStyle = this.color;
-    // ctx.fill();
-    // ctx.closePath();
-    // console.log(this.spongeBob);
-    // console.log(this)
     ctx.drawImage(this.spongeBob, this.pos[0], this.pos[1], this.height, this.width);
   }
 
@@ -441,14 +416,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _moving_objects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_objects */ "./game/moving_objects.js");
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./game/player.js");
 
- // import Util from './util';
+
 
 class Squidward extends _moving_objects__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(options = {}) {
     options.rad = options.rad;
     options.pos = options.pos || options.game.randomPosition();
-    options.color = "orange"; // options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED);
-
+    options.color = "orange";
     super(options);
     let squidward = new Image();
     squidward.src = "assets/good-squid.png";
@@ -465,7 +439,7 @@ class Squidward extends _moving_objects__WEBPACK_IMPORTED_MODULE_0__["default"] 
     } else if (otherObject instanceof _player__WEBPACK_IMPORTED_MODULE_1__["default"]) {
       // this.remove();
       // otherObject.remove();
-      alert('GAME OVER! REFRESH TO RESTART'); // return true;
+      alert("GAME OVER! REFRESH TO RESTART"); // return true;
     }
 
     return false;

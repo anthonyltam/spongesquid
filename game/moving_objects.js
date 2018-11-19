@@ -1,5 +1,4 @@
-import Util from './util';
-// import Game from './game';
+// import Util from './util';
 
 class MovingObject {
   constructor(options) {
@@ -15,15 +14,6 @@ class MovingObject {
     this.draw = this.draw.bind(this);
   }
 
-  draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.pos[0], this.pos[1], this.rad, 0, Math.PI * 2, false);
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    ctx.closePath();
-  }
-  
-
   move(timeDelta) {
     const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA;
     const offsetX = this.vel[0] * velocityScale;
@@ -37,24 +27,26 @@ class MovingObject {
         let [x, y] = pos;
         this.pos = [x + this.rad, y + this.rad];
       } else {
-        // console.log('NEED TO REMOVE');
-        // console.log(this)
         this.remove();
       }
     }
   }
 
   remove() {
-    // console.log('in remove!')
     this.game.remove(this);
   }
 
-  isCollidedWith(otherObject) {
-    const centerDist = Util.dist(this.pos, otherObject.pos);
-    return centerDist < this.rad + otherObject.rad;
+  isCollidedWith(otherObject) {    
+    if (this.pos[0] < otherObject.pos[0] + otherObject.width - 50 &&
+      this.pos[0] + this.width - 50 > otherObject.pos[0] &&
+      this.pos[1] < otherObject.pos[1] + otherObject.height - 10 &&
+      this.height - 10 + this.pos[1] > otherObject.pos[1]) {
+      return true;
+    } else {
+      return false;
+    }  
   }
 
-  collideWith() {}
 }
 
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;

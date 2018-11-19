@@ -67,6 +67,7 @@ class Game {
   }
 
   playerPosition() {
+    // places player in middle
     return [Game.DIM_X / 2, Game.DIM_Y / 2];
   }
 

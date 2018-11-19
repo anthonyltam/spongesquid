@@ -1,13 +1,12 @@
 import MovingObject from './moving_objects';
 import Player from './player';
-// import Util from './util';
 
 class Squidward extends MovingObject {
   constructor(options = {}) {
     options.rad = options.rad;
     options.pos = options.pos || options.game.randomPosition();
     options.color = "orange";
-    // options.vel = options.vel || Util.randomVec(DEFAULTS.SPEED);
+    
     super(options);
 
     let squidward = new Image();
@@ -16,7 +15,13 @@ class Squidward extends MovingObject {
   }
 
   draw(ctx) {
-    ctx.drawImage(this.squidward, this.pos[0], this.pos[1], this.height, this.width);
+    ctx.drawImage(
+      this.squidward,
+      this.pos[0],
+      this.pos[1],
+      this.height,
+      this.width 
+    );
   }
 
   collideWith(otherObject) {
@@ -26,13 +31,12 @@ class Squidward extends MovingObject {
     } else if (otherObject instanceof Player) {
       // this.remove();
       // otherObject.remove();
-      alert('GAME OVER! REFRESH TO RESTART');
+      alert("GAME OVER! REFRESH TO RESTART");
       // return true;
     }
 
     return false;
   }
-
 }
 
 export default Squidward;
