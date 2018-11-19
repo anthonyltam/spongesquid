@@ -18,7 +18,9 @@ class GameView {
     this.bindKeyHandlers();
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
-    
+    setInterval(() => {
+      this.game.addsquidwards();
+    }, 1000);
   }
 
   animate(time) {

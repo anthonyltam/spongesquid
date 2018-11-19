@@ -1,5 +1,7 @@
 # Sponge & Squids
 
+[Live Site](https://anthonyltam.github.io/spongesquid/)
+
 ## Background
 Sponge & Squids is a fun and interactive game where a user(sponge) attempts to push the limits of just how long he/she can avoid those horrible squids! 
 

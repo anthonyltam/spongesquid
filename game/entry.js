@@ -7,20 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.height = Game.DIM_Y;
 
   const ctx = canvas.getContext("2d");
-
   const game = new Game;
-  new GameView(game, ctx).start();
-
-  // const start = document.getElementById('start');
-  // start.addEventListener('click', gameStart);
-
   
-  // const gameStart = () => {
-  //   game.draw();
-  // };
-  
-  setInterval( () => {
-    game.addsquidwards();
-  }, 1000);
+  const gameStart = () => {
+    new GameView(game, ctx).start();
+  };
+
+  const start = document.getElementById("start");
+  start.addEventListener("click", gameStart);
 
 });

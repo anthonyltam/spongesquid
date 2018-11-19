@@ -105,15 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.height = _game__WEBPACK_IMPORTED_MODULE_0__["default"].DIM_Y;
   const ctx = canvas.getContext("2d");
   const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"]();
-  new _game_view__WEBPACK_IMPORTED_MODULE_1__["default"](game, ctx).start(); // const start = document.getElementById('start');
-  // start.addEventListener('click', gameStart);
-  // const gameStart = () => {
-  //   game.draw();
-  // };
 
-  setInterval(() => {
-    game.addsquidwards();
-  }, 1000);
+  const gameStart = () => {
+    new _game_view__WEBPACK_IMPORTED_MODULE_1__["default"](game, ctx).start();
+  };
+
+  const start = document.getElementById("start");
+  start.addEventListener("click", gameStart);
 });
 
 /***/ }),
@@ -282,6 +280,9 @@ class GameView {
     this.bindKeyHandlers();
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
+    setInterval(() => {
+      this.game.addsquidwards();
+    }, 1000);
   }
 
   animate(time) {
