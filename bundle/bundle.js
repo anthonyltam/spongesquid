@@ -358,6 +358,8 @@ class MovingObject {
     }
   }
 
+  collideWith() {}
+
 }
 
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
