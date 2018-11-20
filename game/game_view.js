@@ -15,13 +15,16 @@ class GameView {
   }
 
   start() {
-    console.log(this.game.lost)
     this.bindKeyHandlers();
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
      
     setInterval(() => {
       this.game.addsquidwards();
+    }, 1000);
+    
+    setInterval(() => {
+      this.game.timeDown(this);
     }, 1000);
     
   }

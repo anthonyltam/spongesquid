@@ -137,6 +137,7 @@ class Game {
     this.squidwards = [];
     this.user = [];
     this.lost = false;
+    this.score = 60;
   }
 
   addPlayer() {
@@ -194,9 +195,19 @@ class Game {
     ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     this.allObjects().forEach(object => {
       object.draw(ctx);
-    }); // setInterval(() => {
-    //   this.addsquidwards();
-    // }, 1000);
+    });
+    ctx.font = "26px Arial";
+    ctx.fillStyle = "orange";
+    ctx.fillText("Time Left: " + this.score, 8, 20);
+  }
+
+  timeDown(ctx) {
+    ctx.game.score -= 1;
+    console.log(ctx.game.score);
+
+    if (ctx.game.score === 0) {
+      alert('YOU WIN!');
+    }
   }
 
   moveObjects(delta) {
@@ -274,12 +285,14 @@ class GameView {
   }
 
   start() {
-    console.log(this.game.lost);
     this.bindKeyHandlers();
     this.lastTime = 0;
     requestAnimationFrame(this.animate.bind(this));
     setInterval(() => {
       this.game.addsquidwards();
+    }, 1000);
+    setInterval(() => {
+      this.game.timeDown(this);
     }, 1000);
   }
 

@@ -7,6 +7,7 @@ class Game {
     this.squidwards = [];
     this.user = [];
     this.lost = false;
+    this.score = 60;
   }
 
   addPlayer() {
@@ -70,9 +71,18 @@ class Game {
       object.draw(ctx);
     });
 
-    // setInterval(() => {
-    //   this.addsquidwards();
-    // }, 1000);
+    ctx.font = "26px Arial";
+    ctx.fillStyle = "orange";
+    ctx.fillText("Time Left: " + this.score, 8, 20);
+  }
+
+  timeDown(ctx) {
+    ctx.game.score -= 1;
+    console.log(ctx.game.score);
+
+    if (ctx.game.score === 0) {
+      alert('YOU WIN!');
+    }
   }
 
   moveObjects(delta) {
