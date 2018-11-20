@@ -26,13 +26,11 @@ class Squidward extends MovingObject {
 
   collideWith(otherObject) {
     if (otherObject instanceof Squidward) {
-      // otherObject.relocate();
-      // return true;
     } else if (otherObject instanceof Player) {
-      // this.remove();
-      // otherObject.remove();
-      alert("GAME OVER! REFRESH TO RESTART");
-      // return true;
+      alert("SQUIDWARD GOT YOU! REFRESHING TO RESTART");
+      setTimeout(() => {
+        document.location.reload();
+      }, 10);
     }
 
     return false;

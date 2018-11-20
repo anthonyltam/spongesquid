@@ -76,12 +76,17 @@ class Game {
     ctx.fillText("Time Left: " + this.score, 8, 20);
   }
 
+ 
+
   timeDown(ctx) {
     ctx.game.score -= 1;
     console.log(ctx.game.score);
 
     if (ctx.game.score === 0) {
-      alert('YOU WIN!');
+      alert('YOU ESCAPED FROM SQUIDWARD!');
+      setTimeout( () => {
+        document.location.reload();
+      }, 500);
     }
   }
 

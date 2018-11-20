@@ -206,7 +206,10 @@ class Game {
     console.log(ctx.game.score);
 
     if (ctx.game.score === 0) {
-      alert('YOU WIN!');
+      alert('YOU ESCAPED FROM SQUIDWARD!');
+      setTimeout(() => {
+        document.location.reload();
+      }, 500);
     }
   }
 
@@ -445,12 +448,11 @@ class Squidward extends _moving_objects__WEBPACK_IMPORTED_MODULE_0__["default"] 
   }
 
   collideWith(otherObject) {
-    if (otherObject instanceof Squidward) {// otherObject.relocate();
-      // return true;
-    } else if (otherObject instanceof _player__WEBPACK_IMPORTED_MODULE_1__["default"]) {
-      // this.remove();
-      // otherObject.remove();
-      alert("GAME OVER! REFRESH TO RESTART"); // return true;
+    if (otherObject instanceof Squidward) {} else if (otherObject instanceof _player__WEBPACK_IMPORTED_MODULE_1__["default"]) {
+      alert("SQUIDWARD GOT YOU! REFRESHING TO RESTART");
+      setTimeout(() => {
+        document.location.reload();
+      }, 10);
     }
 
     return false;

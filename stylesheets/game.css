@@ -89,3 +89,7 @@ body {
   font-size: 20px;
   border: transparent;
 }
+
+li {
+  margin-top: 5%;
+}
